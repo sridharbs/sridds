@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   def index
+    @menu = :home
   	@events = Event.all
   end
 
