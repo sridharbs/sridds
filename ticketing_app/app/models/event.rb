@@ -6,4 +6,8 @@ class Event < ActiveRecord::Base
   def short_description
     self.description.truncate(200)
   end
+  
+  def running?
+    self.created_at.to_date >= Date.today
+  end
 end
