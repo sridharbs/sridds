@@ -1,2 +1,26 @@
-<h1>Events#show</h1>
-<p>Find me in app/views/events/show.html.erb</p>
+<div class="col-xs-12 col-sm-9">
+  <%= link_to "Back to Events", events_path, :class => "btn btn-primary" %>
+  <div class="jumbotron">
+    <h1><%= @event.name %></h1>
+    <p><%= @event.description %></p>
+    <% if current_user %>
+      <%= link_to_if current_user.is_attending?(@event), "Unattend", unattend_event_path(@event), :class => "btn btn-primary", :role => "button", 
+        :method => :put do 
+          link_to "Attend", attend_event_path(@event), :class => "btn btn-primary", :role => "button", :method => :put
+        end
+      %>
+    <% end %>
+  </div>
+</div>
+<div id="sidebar" class="col-xs-6 col-sm-3 sidebar-offcanvas">
+  <div class="list-group">
+    <a class="list-group-item active" href="#">Attendees</a>
+    <% if @attendees.present? %>
+      <% @attendees.each do |a| %>
+        <a class="list-group-item"><%= current_user == a ? "You" : a.to_s %></a>
+      <% end %>
+    <% else %>
+      <a class="list-group-item">No Attendees</a>
+    <% end %>
+  </div>
+</div>

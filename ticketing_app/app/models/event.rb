@@ -1,3 +1,9 @@
 class Event < ActiveRecord::Base
-  # attr_accessible :title, :body
+  attr_accessible :name, :description
+
+  has_and_belongs_to_many :attendees, :join_table => "events_users", :class_name => "User"
+  
+  def short_description
+    self.description.truncate(200)
+  end
 end

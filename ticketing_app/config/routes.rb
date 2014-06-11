@@ -4,5 +4,10 @@ TicketingApp::Application.routes.draw do
 
   root :to => "events#index"
 
-  resources :events
+  resources :events do
+    member do
+      put :attend
+      put :unattend
+    end
+  end
 end

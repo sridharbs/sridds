@@ -1,0 +1,11 @@
+<div class="row row-offcanvas row-offcanvas-right">
+  <div class="row">
+    <% @events.each do |e| %>
+      <div class="col-6 col-sm-6 col-lg-4">
+        <h2><%= e.name %></h2>
+        <p><%= e.short_description %></p>
+        <p><%= link_to "View details", event_path(e), :class => "btn btn-default", :role => "button" %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
