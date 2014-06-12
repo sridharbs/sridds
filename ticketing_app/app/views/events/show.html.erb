@@ -5,6 +5,13 @@
     <p><%= @event.description %></p>
     <p>Venue: <%= @event.venue %></p>
     <p>Date: <%= @event.created_at.to_date %></p>
+    <p>Entry Fee: <%= if current_user
+      current_user.female? ? @event.discounted_entry_fee : @event.entry_fee
+    else
+      @event.entry_fee
+    end
+    %>
+    </p>
     <% if current_user && @event.running? %>
       <%= link_to_if current_user.is_attending?(@event), "Unattend", unattend_event_path(@event), :class => "btn btn-primary", :role => "button", 
         :method => :put do 

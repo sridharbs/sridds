@@ -25,4 +25,8 @@ class User < ActiveRecord::Base
   def is_attending? event
     self.events.include?(event)
   end
+  
+  def female?
+    self.gender.eql?("Female")
+  end
 end
