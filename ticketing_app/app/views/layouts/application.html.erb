@@ -1,42 +1,42 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>TicketingApp</title>
-  <%= stylesheet_link_tag "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-	<nav class="navbar navbar-default" role="navigation">
-  	<div class="container-fluid">
-  		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      	<ul class="nav navbar-nav">
-        	<li class=<%= set_selected_menu(:home) %>><%= link_to "Home", events_path %></li>
-          <% if user_signed_in? %>
-            <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
-          <% else %>
-        	  <li class=<%= set_selected_menu(:login) %>><%= link_to "Login", new_user_session_path %></li>
-        	  <li class=<%= set_selected_menu(:register) %>><%= link_to "Register", new_user_registration_path %></li>
-          <% end %>
-  			</ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a><%= "Logged in as #{current_user.name}" if current_user %></a></li>
-        </ul>
-  	</div>
-  </nav>
-  <div class="container">
-    <% if flash[:success].present? %>
-      <div class="alert alert-success"><%= flash[:success] %></div>
-    <% end %>
-    <% if flash[:error].present? %>
-      <div class="alert alert-danger"><%= flash[:error] %></div>
-    <% end %>
-    <% if flash[:notice].present? %>
-      <div class="alert alert-info"><%= flash[:notice] %></div>
-    <% end %>
-    
-    <%= yield %>
-  </div>
-</body>
+	<head>
+	  <title>TicketingApp</title>
+	  <%= stylesheet_link_tag "application", :media => "all" %>
+	  <%= javascript_include_tag "application" %>
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	  <%= csrf_meta_tags %>
+	</head>
+	<body>
+		<nav class="navbar navbar-default" role="navigation">
+	  	<div class="container-fluid">
+	  		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      	<ul class="nav navbar-nav">
+	        	<li class=<%= set_selected_menu(:home) %>><%= link_to "Home", events_path %></li>
+	          <% if user_signed_in? %>
+	            <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+	          <% else %>
+	        	  <li class=<%= set_selected_menu(:login) %>><%= link_to "Login", new_user_session_path %></li>
+	        	  <li class=<%= set_selected_menu(:register) %>><%= link_to "Register", new_user_registration_path %></li>
+	          <% end %>
+	  			</ul>
+	        <ul class="nav navbar-nav navbar-right">
+	         	<li><a><%= "Logged in as #{current_user.name}" if current_user %></a></li>
+	        </ul>
+	  	</div>
+	  </nav>
+	  <div class="container">
+	    <% if flash[:success].present? %>
+	      <div class="alert alert-success"><%= flash[:success] %></div>
+	    <% end %>
+	    <% if flash[:error].present? %>
+	      <div class="alert alert-danger"><%= flash[:error] %></div>
+	    <% end %>
+	    <% if flash[:notice].present? %>
+	      <div class="alert alert-info"><%= flash[:notice] %></div>
+	    <% end %>
+	    
+	    <%= yield %>
+	  </div>
+	</body>
 </html>
